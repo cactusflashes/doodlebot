@@ -41,7 +41,7 @@ client.once(Events.ClientReady, c => {
 
 				let greeting = getGreeting(); 
 
-				channelGen.send(`${greeting} everyone! It's time to strech those creative muscles. Your prompt of the day is as follows: **${response}**`);
+				channelGen.send(`${greeting} @everyone! It's time to strech those creative muscles. Your prompt of the day is as follows: **${response}**`);
 
 		}	  
 
