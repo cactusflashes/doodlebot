@@ -11,7 +11,7 @@ dotenv.config();
 client.once(Events.ClientReady, c => {
 console.log(`Ready! Logged in as ${c.user.tag}`);
 client.user.setStatus('online');
-lient.user.setActivity(`you sleep`, { type: ActivityType.Watching });
+client.user.setActivity(`you sleep`, { type: ActivityType.Watching });
 			  
 async function main() {
 	const channelGen = client.channels.cache.get(channelId);
