@@ -5,9 +5,7 @@ import { Client, Events, GatewayIntentBits, ActivityType } from 'discord.js';
 const token = process.env.DISCORD_TOKEN; 
 const channelId = process.env.CHANNEL_ID;
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
-const openai = new OpenAI({
-	apiKey: process.env.OPENAI_API_KEY
-});
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 dotenv.config();
 client.once(Events.ClientReady, c => {
