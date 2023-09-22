@@ -1,11 +1,12 @@
 import dotenv from 'dotenv';
-dotenv.config();
 import OpenAI from "openai";
 import { Client, Events, GatewayIntentBits, ActivityType } from 'discord.js'; 
 
 const token = process.env.DISCORD_TOKEN; 
 const channelId = process.env.CHANNEL_ID;
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+
+dotenv.config();
 
 client.once(Events.ClientReady, c => {
 	console.log(`Ready! Logged in as ${c.user.tag}`);
