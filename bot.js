@@ -38,7 +38,7 @@ async function main() {
 		
  let greeting = getGreeting(); 
 
- console.log(`${greeting} @everyone! It's time to strech those creative muscles. Your prompt of the day is as follows: **${response}**`);
+ channelGen.send(`${greeting} @everyone! It's time to strech those creative muscles. Your prompt of the day is as follows: **${response}**`);
 
 }	  
 
