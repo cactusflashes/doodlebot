@@ -2,27 +2,28 @@ import dotenv from 'dotenv';
 import OpenAI from "openai";
 import { Client, Events, GatewayIntentBits, ActivityType } from 'discord.js'; 
 
+dotenv.config();
+
 const token = process.env.DISCORD_TOKEN; 
 const channelId = process.env.CHANNEL_ID;
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+const openai = new OpenAI({apiKey: process.env.OPENAI_API_KEY});
 
-dotenv.config();
 client.once(Events.ClientReady, c => {
 console.log(`Ready! Logged in as ${c.user.tag}`);
 client.user.setStatus('online');
 client.user.setActivity(`you sleep`, { type: ActivityType.Watching });
-			  
+
 async function main() {
 	const channelGen = client.channels.cache.get(channelId);
 	const completion = await openai.chat.completions.create({
-	messages: [{ role: 'user', content: 'Give me a creative prompt for an artist or creative to capture, that is no longer than three sentences and under 100 words.' }],
-	model: 'gpt-3.5-turbo',
-});		
+		messages: [{ role: 'user', content: 'Give me a creative prompt for an artist or creative to capture, that is no longer than three sentences and under 100 words.' }],
+		model: 'gpt-3.5-turbo',
+	});		
 
-const response = completion.choices[0].message.content; 
+ const response = completion.choices[0].message.content; 
 
-function getGreeting() {
+ function getGreeting() {
 	let currentHour = new Date().getHours();	
 		if (currentHour >= 5 && currentHour < 12) {
 		return "Good morning,"; //if the time is past 5am and before noon => Good Morning 
@@ -34,17 +35,15 @@ function getGreeting() {
 		return "Good night,"; //anything past 9pm before 5am => Good Night 
 		}
 	}
+		
+ let greeting = getGreeting(); 
 
-let greeting = getGreeting(); 
-
-channelGen.send(`${greeting} @everyone! It's time to strech those creative muscles. Your prompt of the day is as follows: **${response}**`);
+ console.log(`${greeting} @everyone! It's time to strech those creative muscles. Your prompt of the day is as follows: **${response}**`);
 
 }	  
 
 main();		
 
 });
-	
-client.login(token);
 
-	
+client.login(token);
